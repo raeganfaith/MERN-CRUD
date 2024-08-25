@@ -21,7 +21,8 @@ const productSchema = new mongoose.Schema(
   }
 );
 
-// Product model, create a collection labelled as 'Product' using the productSchema
+// Product model, create a collection labelled as "Product" using the productSchema
+// The "Product" will automatically renamed to "products" in the MongoDB
 const Product = mongoose.model("Product", productSchema);
 
 // To use this in different files
