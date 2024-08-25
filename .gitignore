@@ -1,3 +1,4 @@
 /node_modules
 /.env
 .vscode/extensions.json
+.frontend/node_modules
