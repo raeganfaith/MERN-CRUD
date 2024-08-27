@@ -22,8 +22,12 @@ import {
 
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useProductStore } from "../store/product";
+import { updateProduct } from "./../../../backend/controllers/product.controller";
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
+  const [updateProduct, setUpdateProduct] = useState(product);
+
   const textColor = useColorModeValue("gray.600", "gray.200");
   const bg = useColorModeValue("white", "gray.800");
 
@@ -92,6 +96,7 @@ const ProductCard = ({ product }) => {
         </HStack>
       </Box>
 
+      {/* Modal for Edit Product */}
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
@@ -99,9 +104,22 @@ const ProductCard = ({ product }) => {
           <ModalCloseButton />
           <ModalBody>
             <VStack spacing={4}>
-              <Input placeholder="Product Name" name="name" />
-              <Input placeholder="Price" name="price" type="number" />
-              <Input placeholder="Image URL" name="image" />
+              <Input
+                placeholder="Product Name"
+                name="name"
+                value={updateProduct.name}
+              />
+              <Input
+                placeholder="Price"
+                name="price"
+                type="number"
+                value={updateProduct.price}
+              />
+              <Input
+                placeholder="Image URL"
+                name="image"
+                value={updateProduct.image}
+              />
             </VStack>
           </ModalBody>
           <ModalFooter>
