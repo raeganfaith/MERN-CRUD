@@ -7,6 +7,17 @@ import {
   Text,
   useToast,
   useColorModeValue,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  VStack,
+  Input,
+  useDisclosure,
+  ModalBody,
+  Button,
+  ModalFooter,
 } from "@chakra-ui/react";
 
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
@@ -18,6 +29,8 @@ const ProductCard = ({ product }) => {
 
   const { deleteProduct } = useProductStore();
   const toast = useToast();
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleDeleteProduct = async (pid) => {
     const { success, message } = await deleteProduct(pid);
@@ -70,7 +83,7 @@ const ProductCard = ({ product }) => {
 
         {/* Edit and Delete Button */}
         <HStack spacing={2}>
-          <IconButton icon={<EditIcon />} colorScheme="blue" />
+          <IconButton icon={<EditIcon />} onClick={onOpen} colorScheme="blue" />
           <IconButton
             icon={<DeleteIcon />}
             onClick={() => handleDeleteProduct(product._id)}
@@ -78,6 +91,29 @@ const ProductCard = ({ product }) => {
           />
         </HStack>
       </Box>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Update Product</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <VStack spacing={4}>
+              <Input placeholder="Product Name" name="name" />
+              <Input placeholder="Price" name="price" type="number" />
+              <Input placeholder="Image URL" name="image" />
+            </VStack>
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3}>
+              Update
+            </Button>
+            <Button variant="ghost" onClick={onClose}>
+              Cancel
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };
