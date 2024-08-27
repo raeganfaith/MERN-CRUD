@@ -13,7 +13,7 @@ const HomePage = () => {
   console.log("products", products);
 
   return (
-    <Container maxW={"container.xl"}>
+    <Container maxW={"container.xl"} py={12}>
       <VStack spacing={8}>
         <Text
           fontSize={"30"}
@@ -29,23 +29,25 @@ const HomePage = () => {
             <ProductCard key={product._id} product={product} />
           ))}
         </SimpleGrid>
-        <Text
-          fontSize="xl"
-          textAlign={"center"}
-          fontWeight="bold"
-          color="gray.500"
-        >
-          No products found 😢{" "}
-          <Link to={"/create"}>
-            <Text
-              as="span"
-              color="blue.500"
-              _hover={{ textDecoration: "underline" }}
-            >
-              Create a product
-            </Text>
-          </Link>
-        </Text>
+        {products.length === 0 && (
+          <Text
+            fontSize="xl"
+            textAlign={"center"}
+            fontWeight="bold"
+            color="gray.500"
+          >
+            No products found 😢{" "}
+            <Link to={"/create"}>
+              <Text
+                as="span"
+                color="blue.500"
+                _hover={{ textDecoration: "underline" }}
+              >
+                Create a product
+              </Text>
+            </Link>
+          </Text>
+        )}
       </VStack>
     </Container>
   );
