@@ -38,8 +38,8 @@ const CreatePage = () => {
         isClosable: true,
       });
     }
-    // Clear fields after 
-    setNewProduct({ name: "", price: "", image: "" }); 
+    // Clear fields after
+    setNewProduct({ name: "", price: "", image: "" });
   };
   return (
     <Container maxW={"container.sm"}>
