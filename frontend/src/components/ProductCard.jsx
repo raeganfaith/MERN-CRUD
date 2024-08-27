@@ -22,7 +22,6 @@ import {
 
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import { useProductStore } from "../store/product";
-import { updateProduct } from "./../../../backend/controllers/product.controller";
 import { useState } from "react";
 
 const ProductCard = ({ product }) => {
